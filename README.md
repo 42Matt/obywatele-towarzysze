@@ -1,6 +1,28 @@
-# `Obywatelu Towarzyszu!` gra planszowa
+# `Obywatelu Towarzyszu!` PC board game
 
-## [pl] Zabawna gra planszowa w klimatach PRL-u. Tworzona w Next.js
+## Table of Contents
+
+- [System Requirements](#System-Requirements)
+- [Description](#Description)
+
+---
+## Description:
+[pl] Zabawna gra planszowa w klimatach PRL-u. Tworzona w Next.js
+
+[eng] Funny pc board game that takes place in Polish People's Republic. Project is being created in Next.js
+
+---
+## System Requirements
+
+- `git` v2.31 or greater
+- `NodeJS` v14.16.0 or greater
+- `npm` v7.7.5 or greater
+
+```bash
+git --version
+node --version
+npm --version
+```
 
 ---
 
@@ -54,3 +76,24 @@ export default () => (
 ```
 
 </details>
+
+---
+## Contributors
+
+<table>
+  <tr>
+<td  align="left"><a href="https://github.com/42Matt">
+<img src="https://github.com/42Matt.png" width="100px;" alt=""/><br />
+<sub><b>Mateusz Dziadosz</b></sub></a><br />
+<a href="https://github.com/42Matt" title="Code">💻</a>
+<a href="" title="Documentation">📖</a>
+</td>
+
+<td  align="left"><a href="https://github.com/MaciejMichalski92">
+<img src="https://github.com/MaciejMichalski92.png" width="100px;" alt=""/><br />
+<sub><b>Maciej Michalski</b></sub></a><br />
+<!-- <a href="https://github.com/MaciejMichalski92" title="Code">💻</a>
+<a href="" title="Documentation">📖</a> -->
+</td>
+
+</tr></table>
