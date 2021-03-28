@@ -1,0 +1,4 @@
+jsconfig.json
+node_modules/*
+.eslint*
+*/assets/*

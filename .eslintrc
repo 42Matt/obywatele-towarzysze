@@ -1,0 +1,33 @@
+{
+  "parser": "@babel/eslint-parser",
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["react-hooks"],
+  "env": {
+    "jest": true
+  },
+  "globals": {
+    "document": true,
+    "window": true,
+    "localStorage": true
+  },
+
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
+    "import/prefer-default-export": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": 1,
+    "react/state-in-constructor": [1, "never"],
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
+    "react/jsx-uses-react": "off", // no react import
+    "react/react-in-jsx-scope": "off", // no react import
+    "react/jsx-props-no-spreading": "off" //might turn on later
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "src/"]
+      }
+    }
+  }
+}
