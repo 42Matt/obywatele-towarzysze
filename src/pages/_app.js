@@ -1,9 +1,9 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import Sanitize from 'theme/Sanitize';
+import ModernNormalize from 'theme/ModernNormalize';
 import theme from 'theme/globalTheme';
 
 const GlobalStyle = createGlobalStyle`
-${Sanitize}
+  ${ModernNormalize}
   body {
     margin: 0;
     padding: 0;
