@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
   html {
   // * Happy rems-> 1 rem === 10px
   font-size: 62.5%;
+
   }
 
   @font-face {
@@ -47,7 +48,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme.light}>
         <Component {...pageProps} />
       </ThemeProvider>
     </>
