@@ -1,160 +1,138 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import Button from 'components/Button';
+// import pic from 'assets/pic.jpeg';
 
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: ${({ theme }) => theme.colors.background};
   display: flex;
   justify-content: center;
   align-items: center;
+  background: url(/brickwall.png);
+
+  ::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: ${({ theme }) => theme.colors.primaryBackground};
+
+    mix-blend-mode: color;
+  }
 `;
 
-const StartMenuContainer = styled.div`
+const MenuContainer = styled.div`
+  z-index: 1000;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: top;
   align-items: center;
   padding: 5rem 2rem;
-  background-color: ${({ theme }) => theme.colors.primaryBackground};
+  height: 70rem;
+  background-image: url(/menu-choice.jpeg);
+  background-color: ${({ theme }) => theme.colors.accent};
   border: 10px solid #fff;
   border-radius: 20px;
-  box-shadow: 2px 2px #333;
+  box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.11);
 `;
 
 const Title = styled.h1`
-  margin: 0;
-  font-size: 50px;
+  margin: 0 0 3rem;
+  /* text-transform: uppercase; */
   color: ${({ theme }) => theme.colors.textNormal};
-  text-shadow: 1px 1px #fff;
+  font-family: ${({ theme }) => theme.fonts.title};
+  font-size: ${({ theme }) => theme.sizes.xxl};
+  /* text-shadow: 1px 1px #fff; */
 `;
 
 const Subtitle = styled.h2`
-  font-size: 1, 2rem;
+  margin: 0 0 20rem;
+  font-family: ${({ theme }) => theme.fonts.title};
+  font-size: ${({ theme }) => theme.sizes.xl};
   color: ${({ theme }) => theme.colors.textNormal};
   text-shadow: 1px 1px #333;
 `;
 const Paragraph = styled.p`
+  margin: 0 0 2.5rem;
+  /* font-family: ${({ theme }) => theme.fonts.title}; */
   color: ${({ theme }) => theme.colors.textWhite};
-  text-shadow: 1px 1px #333;
+  text-transform: uppercase;
+  letter-spacing: 0.5rem;
+  font-size: ${({ theme }) => theme.sizes.xl};
+  text-shadow: 2px 2px #333;
 `;
 
 const NumberContainer = styled.div`
-  background-color: ${({ theme }) => theme.colors.accentBackground};
-  margin-top: 2.5rem;
+  background-color: ${({ theme }) => theme.colors.accent};
+  background: ${({ theme }) => theme.gradients.secondaryGradient};
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 2px 2px 1px 4px #333;
+  border: 5px solid #fff;
+  border-radius: 1rem;
   input {
     display: none;
   }
   label {
     padding: 1rem;
+    font-size: ${({ theme }) => theme.sizes.xl};
     cursor: pointer;
     transition: 0.2s ease-in-out;
     &:hover {
-      background-color: ${({ theme }) => theme.colors.accent};
+      background-color: ${({ theme }) => theme.colors.primaryBackground};
     }
   }
 `;
-
-const NumberScreen = styled.div`
-  margin-top: 2.5rem;
-  font-size: 2rem;
-  text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.textWhite};
-  span {
-    font-weight: bold;
-    color: ${({ theme }) => theme.colors.textNormal};
-  }
+const ChosenNumber = styled.span`
+  color: white;
+  font-weight: 700;
 `;
 
-const StartButton = styled.button`
-  margin-top: 1rem;
-  padding: 0.5rem 1.5rem;
-  background-color: ${({ theme }) => theme.colors.accentBackground};
-  color: ${({ theme }) => theme.colors.textNormal};
-  border: none;
-  border-radius: 1rem;
-  box-shadow: 2px 2px 1px 4px #333;
-
-  visibility: ${({ pikcedNumber }) => (pikcedNumber ? 'visible' : 'hidden')};
-  font-size: 2rem;
-  text-transform: uppercase;
-  font-weight: bold;
-  transition: 0.3s;
-  cursor: pointer;
-  &:hover {
-    color: ${({ theme }) => theme.colors.textWhite};
-  }
-  &:focus {
-    outline: none;
-  }
+const StyledButton = styled(Button)`
+  margin-top: 4rem;
+  /* visibility: ${({ active }) => (active ? 'visible' : 'hidden')}; */
+  filter: ${({ active }) => (active ? 'opacity(1)' : 'opacity(0)')};
 `;
 
 const Home = () => {
   const [numberOfPlayers, setNumberOfPlayers] = useState(0);
-  const [pikcedNumber, setpikcedNumber] = useState(false);
+  const [isButtonVisible, setButtonVisibility] = useState(false);
 
   const handlePickingNumberOfPlayers = (e) => {
     setNumberOfPlayers(e.target.value);
-    setpikcedNumber(true);
+    setButtonVisibility(true);
   };
+
+  const options = [2, 3, 4];
 
   return (
     <Wrapper>
-      <StartMenuContainer>
+      <MenuContainer>
         <Title>Obywatele, Towarzysze!</Title>
         <Subtitle>Zapraszamy do gry!</Subtitle>
-        <Paragraph>Wybierz liczbę graczy:</Paragraph>
+
+        <Paragraph>Wybierz liczbę graczy: </Paragraph>
+
         <NumberContainer>
-          <label htmlFor="1">
-            <input
-              type="radio"
-              value={1}
-              name="numberOfPlayers"
-              id="1"
-              onChange={handlePickingNumberOfPlayers}
-            />
-            1
-          </label>
-          <label htmlFor="2">
-            <input
-              type="radio"
-              value={2}
-              name="numberOfPlayers"
-              id="2"
-              onChange={handlePickingNumberOfPlayers}
-            />
-            2
-          </label>
-          <label htmlFor="3">
-            <input
-              type="radio"
-              value={3}
-              name="numberOfPlayers"
-              id="3"
-              onChange={handlePickingNumberOfPlayers}
-            />
-            3
-          </label>
-          <label htmlFor="4">
-            <input
-              type="radio"
-              value={4}
-              name="numberOfPlayers"
-              id="4"
-              onChange={handlePickingNumberOfPlayers}
-            />
-            4
-          </label>
+          {options.map((element) => (
+            <label key={element} htmlFor={element}>
+              <input
+                type="radio"
+                value={+element}
+                name="numberOfPlayers"
+                id={element}
+                onChange={handlePickingNumberOfPlayers}
+              />
+              {+element === +numberOfPlayers ? <ChosenNumber>{element}</ChosenNumber> : element}
+            </label>
+          ))}
         </NumberContainer>
-        <NumberScreen>
-          Liczba graczy: <span>{numberOfPlayers}</span>
-        </NumberScreen>
-        <StartButton pikcedNumber={pikcedNumber}>Start</StartButton>
-      </StartMenuContainer>
+
+        <StyledButton secondary active={isButtonVisible}>
+          <span>Start</span>
+        </StyledButton>
+      </MenuContainer>
     </Wrapper>
   );
 };
