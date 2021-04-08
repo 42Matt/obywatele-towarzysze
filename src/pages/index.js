@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import Button from 'components/Button';
+import Link from 'next/link';
 // import pic from 'assets/pic.jpeg';
 
 const Wrapper = styled.div`
@@ -43,6 +44,7 @@ const Title = styled.h1`
   color: ${({ theme }) => theme.colors.textNormal};
   font-family: ${({ theme }) => theme.fonts.title};
   font-size: ${({ theme }) => theme.sizes.xxl};
+  text-align: center;
   /* text-shadow: 1px 1px #fff; */
 `;
 
@@ -130,7 +132,9 @@ const Home = () => {
         </NumberContainer>
 
         <StyledButton secondary active={isButtonVisible}>
-          <span>Start</span>
+          <Link href="/game">
+            <span>Start</span>
+          </Link>
         </StyledButton>
       </MenuContainer>
     </Wrapper>
