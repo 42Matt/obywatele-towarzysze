@@ -1,6 +1,7 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import ModernNormalize from 'theme/ModernNormalize';
 import theme from 'theme/globalTheme';
+import Meta from 'components/Meta';
 import { ContextAppWrapper } from '../context/state';
 
 const GlobalStyle = createGlobalStyle`
@@ -48,6 +49,7 @@ const GlobalStyle = createGlobalStyle`
 export default function App({ Component, pageProps }) {
   return (
     <>
+      <Meta />
       <GlobalStyle />
       <ThemeProvider theme={theme.light}>
         <ContextAppWrapper>

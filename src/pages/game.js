@@ -1,5 +1,5 @@
 import GameMap from 'components/GameMap';
 
-const game = () => <GameMap />;
+const Game = () => <GameMap />;
 
-export default game;
+export default Game;
