@@ -1,6 +1,7 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import ModernNormalize from 'theme/ModernNormalize';
 import theme from 'theme/globalTheme';
+import { ContextAppWrapper } from '../context/state';
 
 const GlobalStyle = createGlobalStyle`
   ${ModernNormalize}
@@ -49,7 +50,9 @@ export default function App({ Component, pageProps }) {
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme.light}>
-        <Component {...pageProps} />
+        <ContextAppWrapper>
+          <Component {...pageProps} />
+        </ContextAppWrapper>
       </ThemeProvider>
     </>
   );

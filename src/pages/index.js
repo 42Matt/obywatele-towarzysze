@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import Button from 'components/Button';
 import Link from 'next/link';
+import { useAppContext } from '../context/state';
 // import pic from 'assets/pic.jpeg';
 
 const Wrapper = styled.div`
@@ -98,10 +99,12 @@ const StyledButton = styled(Button)`
 `;
 
 const Home = () => {
+  const { state, dispatch } = useAppContext();
   const [numberOfPlayers, setNumberOfPlayers] = useState(0);
   const [isButtonVisible, setButtonVisibility] = useState(false);
 
   const handlePickingNumberOfPlayers = (e) => {
+    dispatch({ type: e.target.value });
     setNumberOfPlayers(e.target.value);
     setButtonVisibility(true);
   };
@@ -114,7 +117,10 @@ const Home = () => {
         <Title>Obywatele, Towarzysze!</Title>
         <Subtitle>Zapraszamy do gry!</Subtitle>
 
-        <Paragraph>Wybierz liczbę graczy: </Paragraph>
+        <Paragraph>
+          Wybierz liczbę graczy:
+          {/* <span>{state.players && state.players}</span> */}
+        </Paragraph>
 
         <NumberContainer>
           {options.map((element) => (

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { villageData, cityData, riverData } from './mapData';
+import { useAppContext } from '../../context/state';
 
 const Wrapper = styled.div`
   display: flex;
@@ -36,30 +37,35 @@ const MiddleFields = styled.div`
   justify-content: center;
 `;
 
-export const GameMap = () => (
-  <Wrapper>
-    <StyledGrid>
-      {villageData.map((item) => (
-        <MapField key={item.id} id={item.id}>
-          Pozycja:{item.position}| Id:{item.id}
-        </MapField>
-      ))}
-    </StyledGrid>
+export const GameMap = () => {
+  const { state } = useAppContext();
+  console.log(state);
 
-    <MiddleFields>
-      {riverData.map((item) => (
-        <MapField key={item.id} id={item.id}>
-          Pozycja:{item.position}| Id:{item.id}
-        </MapField>
-      ))}
-    </MiddleFields>
+  return (
+    <Wrapper>
+      <StyledGrid>
+        {villageData.map((item) => (
+          <MapField key={item.id} id={item.id}>
+            Pozycja:{item.position}| Id:{item.id}
+          </MapField>
+        ))}
+      </StyledGrid>
 
-    <StyledGrid>
-      {cityData.map((item) => (
-        <MapField key={item.id} id={item.id}>
-          Pozycja:{item.position}| Id:{item.id}
-        </MapField>
-      ))}
-    </StyledGrid>
-  </Wrapper>
-);
+      <MiddleFields>
+        {riverData.map((item) => (
+          <MapField key={item.id} id={item.id}>
+            Pozycja:{item.position}| Id:{item.id}
+          </MapField>
+        ))}
+      </MiddleFields>
+
+      <StyledGrid>
+        {cityData.map((item) => (
+          <MapField key={item.id} id={item.id}>
+            Pozycja:{item.position}| Id:{item.id}
+          </MapField>
+        ))}
+      </StyledGrid>
+    </Wrapper>
+  );
+};
