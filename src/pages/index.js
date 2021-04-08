@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import Button from 'components/Button';
 import Link from 'next/link';
-// import pic from 'assets/pic.jpeg';
+import GameContext from 'context';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -109,35 +109,37 @@ const Home = () => {
   const options = [2, 3, 4];
 
   return (
-    <Wrapper>
-      <MenuContainer>
-        <Title>Obywatele, Towarzysze!</Title>
-        <Subtitle>Zapraszamy do gry!</Subtitle>
+    <GameContext.Provider value={{ numberOfPlayers }}>
+      <Wrapper>
+        <MenuContainer>
+          <Title>Obywatele, Towarzysze!</Title>
+          <Subtitle>Zapraszamy do gry!</Subtitle>
 
-        <Paragraph>Wybierz liczbę graczy: </Paragraph>
+          <Paragraph>Wybierz liczbę graczy: </Paragraph>
 
-        <NumberContainer>
-          {options.map((element) => (
-            <label key={element} htmlFor={element}>
-              <input
-                type="radio"
-                value={+element}
-                name="numberOfPlayers"
-                id={element}
-                onChange={handlePickingNumberOfPlayers}
-              />
-              {+element === +numberOfPlayers ? <ChosenNumber>{element}</ChosenNumber> : element}
-            </label>
-          ))}
-        </NumberContainer>
+          <NumberContainer>
+            {options.map((element) => (
+              <label key={element} htmlFor={element}>
+                <input
+                  type="radio"
+                  value={+element}
+                  name="numberOfPlayers"
+                  id={element}
+                  onChange={handlePickingNumberOfPlayers}
+                />
+                {+element === +numberOfPlayers ? <ChosenNumber>{element}</ChosenNumber> : element}
+              </label>
+            ))}
+          </NumberContainer>
 
-        <StyledButton secondary active={isButtonVisible}>
-          <Link href="/game">
-            <span>Start</span>
-          </Link>
-        </StyledButton>
-      </MenuContainer>
-    </Wrapper>
+          <StyledButton secondary active={isButtonVisible}>
+            <Link href="/game">
+              <span>Start</span>
+            </Link>
+          </StyledButton>
+        </MenuContainer>
+      </Wrapper>
+    </GameContext.Provider>
   );
 };
 
