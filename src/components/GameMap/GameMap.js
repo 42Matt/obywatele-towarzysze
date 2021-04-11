@@ -35,6 +35,12 @@ const MiddleFields = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-image: url('/sea.svg');
+`;
+
+const Bridge = styled.div`
+  height: 50%;
+  background-image: url('/bridge.svg');
 `;
 
 export const GameMap = () => {
@@ -55,6 +61,7 @@ export const GameMap = () => {
         {riverData.map((item) => (
           <MapField key={item.id} id={item.id}>
             Pozycja:{item.position}| Id:{item.id}
+            {item.id === 3 ? <Bridge /> : null}
           </MapField>
         ))}
       </MiddleFields>

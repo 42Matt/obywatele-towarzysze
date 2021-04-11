@@ -99,7 +99,7 @@ const StyledButton = styled(Button)`
 `;
 
 const Home = () => {
-  const { state, dispatch } = useAppContext();
+  const { dispatch } = useAppContext();
   const [numberOfPlayers, setNumberOfPlayers] = useState(0);
   const [isButtonVisible, setButtonVisibility] = useState(false);
 
