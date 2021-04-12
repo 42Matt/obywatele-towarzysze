@@ -2,8 +2,10 @@
 
 ## Table of Contents
 
-- [System Requirements](#System-Requirements)
 - [Description](#Description)
+- [System Requirements](#System-Requirements)
+- [Git Commit Message](#Git-commit-message)
+- [Contributors](#Git-commit-message)
 
 ---
 ## Description:
@@ -26,7 +28,7 @@ npm --version
 
 ---
 
-## Git commit message 
+## Git commit message
 
 Feat: The new feature you're adding to a particular application
 Fix: A bug fix

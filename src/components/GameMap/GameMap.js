@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { villageData, cityData, riverData } from './mapData';
 import { useAppContext } from '../../context/state';
+import SvgProvider from './SvgProvider';
+
+const Variables = {
+  size: '11rem',
+};
 
 const Wrapper = styled.div`
   display: flex;
@@ -24,8 +29,8 @@ const StyledGrid = styled.div`
 `;
 
 const MapField = styled.div`
-  height: 11rem;
-  width: 11rem;
+  height: ${Variables.size};
+  width: ${Variables.size};
   /* temps */
   border: 2px solid black;
   font-size: 2rem;
@@ -35,12 +40,21 @@ const MiddleFields = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+`;
+
+const Sea = styled.div`
+  position: absolute;
+  height: ${Variables.size};
+  width: ${Variables.size};
   background-image: url('/sea.svg');
 `;
 
 const Bridge = styled.div`
-  height: 50%;
-  background-image: url('/bridge.svg');
+  position: absolute;
+
+  height: ${Variables.size};
+  width: ${Variables.size};
+  background-image: url(${() => '/bridge.svg'});
 `;
 
 export const GameMap = () => {
@@ -60,7 +74,8 @@ export const GameMap = () => {
       <MiddleFields>
         {riverData.map((item) => (
           <MapField key={item.id} id={item.id}>
-            Pozycja:{item.position}| Id:{item.id}
+            {/* Pozycja:{item.position}| Id:{item.id} */}
+            <Sea />
             {item.id === 3 ? <Bridge /> : null}
           </MapField>
         ))}
@@ -69,7 +84,13 @@ export const GameMap = () => {
       <StyledGrid>
         {cityData.map((item) => (
           <MapField key={item.id} id={item.id}>
-            Pozycja:{item.position}| Id:{item.id}
+            {/* Pozycja:{item.position}| Id:{item.id} */}
+            <SvgProvider
+              width={Variables.size}
+              height={Variables.size}
+              file="cityIcons"
+              elementId={item.id}
+            />
           </MapField>
         ))}
       </StyledGrid>
