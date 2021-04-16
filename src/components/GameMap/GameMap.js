@@ -24,7 +24,7 @@ const StyledGrid = styled.div`
   grid-template-rows: repeat(4, 1fr);
 
   > div {
-    background-color: red;
+    /* background-color: red; */
   }
 `;
 
@@ -32,7 +32,7 @@ const MapField = styled.div`
   height: ${Variables.size};
   width: ${Variables.size};
   /* temps */
-  border: 2px solid black;
+  /* border: 2px solid black; */
   font-size: 2rem;
 `;
 
@@ -54,7 +54,7 @@ const Bridge = styled.div`
 
   height: ${Variables.size};
   width: ${Variables.size};
-  background-image: url(${() => '/bridge.svg'});
+  background-image: url('/bridge.svg');
 `;
 
 export const GameMap = () => {
@@ -66,7 +66,8 @@ export const GameMap = () => {
       <StyledGrid>
         {villageData.map((item) => (
           <MapField key={item.id} id={item.id}>
-            Pozycja:{item.position}| Id:{item.id}
+            {/* Pozycja:{item.position}| Id:{item.id} */}
+            <img src={`/village/field-${item.id}.svg`} alt={`Village field ${item.id}`} />
           </MapField>
         ))}
       </StyledGrid>
@@ -85,6 +86,7 @@ export const GameMap = () => {
         {cityData.map((item) => (
           <MapField key={item.id} id={item.id}>
             {/* Pozycja:{item.position}| Id:{item.id} */}
+
             <SvgProvider
               width={Variables.size}
               height={Variables.size}
