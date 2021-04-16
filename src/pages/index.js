@@ -8,6 +8,7 @@ import { useAppContext } from '../context/state';
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,6 +28,7 @@ const Wrapper = styled.div`
 const MenuContainer = styled.div`
   z-index: 1000;
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: top;
   align-items: center;
@@ -97,8 +99,8 @@ const ChosenNumber = styled.span`
 const StampleButton = styled.div`
   position: absolute;
   filter: ${({ active }) => (active ? 'opacity(1)' : 'opacity(0)')};
-  top: 53rem;
-  right: 51rem;
+  bottom: 22rem;
+  right: 1rem;
   width: 21rem;
   height: 1px; // otherwise bug
   transition: 0.3s;
