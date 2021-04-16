@@ -8,6 +8,7 @@ const theme = {
       background: '#FDD8CF',
       textNormal: '#111111',
       textWhite: '#FFF',
+      red: '#d40000',
     },
     gradients: {
       primaryGradient: 'linear-gradient(94.56deg, #F9B5A8 12.48%, #ED6A40 82.12%)',

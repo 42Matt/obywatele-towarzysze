@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import Button from 'components/Button';
+
 import Link from 'next/link';
 import { useAppContext } from '../context/state';
 // import pic from 'assets/pic.jpeg';
@@ -34,7 +34,8 @@ const MenuContainer = styled.div`
   height: 70rem;
   background-image: url(/menu-choice.jpeg);
   background-color: ${({ theme }) => theme.colors.accent};
-  border: 10px solid #fff;
+  border-right: 10px solid ${({ theme }) => theme.colors.red};
+  border-bottom: 10px solid ${({ theme }) => theme.colors.red};
   border-radius: 20px;
   box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.11);
 `;
@@ -56,46 +57,57 @@ const Subtitle = styled.h2`
   color: ${({ theme }) => theme.colors.textNormal};
   text-shadow: 1px 1px #333;
 `;
-const Paragraph = styled.p`
+const StyledParagraph = styled.p`
   margin: 0 0 2.5rem;
   /* font-family: ${({ theme }) => theme.fonts.title}; */
-  color: ${({ theme }) => theme.colors.textWhite};
+  color: ${({ theme }) => theme.colors.red};
   text-transform: uppercase;
   letter-spacing: 0.5rem;
   font-size: ${({ theme }) => theme.sizes.xl};
-  text-shadow: 2px 2px #333;
+  text-shadow: 1px 1px #333;
 `;
 
 const NumberContainer = styled.div`
-  background-color: ${({ theme }) => theme.colors.accent};
-  background: ${({ theme }) => theme.gradients.secondaryGradient};
+  /* background-color: ${({ theme }) => theme.colors.accent}; */
+  /* background: ${({ theme }) => theme.gradients.secondaryGradient}; */
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 5px solid #fff;
-  border-radius: 1rem;
+  border-bottom: 7px solid ${({ theme }) => theme.colors.red};
+  /* border-right: 5px solid #d40000; */
+  /* border-radius: 1rem; */
   input {
     display: none;
   }
   label {
     padding: 1rem;
-    font-size: ${({ theme }) => theme.sizes.xl};
+    font-size: ${({ theme }) => theme.sizes.xxl};
     cursor: pointer;
     transition: 0.2s ease-in-out;
     &:hover {
-      background-color: ${({ theme }) => theme.colors.primaryBackground};
+      background-color: ${({ theme }) => theme.colors.textWhite};
     }
   }
 `;
 const ChosenNumber = styled.span`
-  color: white;
+  color: ${({ theme }) => theme.colors.red};
   font-weight: 700;
 `;
 
-const StyledButton = styled(Button)`
-  margin-top: 4rem;
-  /* visibility: ${({ active }) => (active ? 'visible' : 'hidden')}; */
+const StampleButton = styled.div`
+  position: absolute;
   filter: ${({ active }) => (active ? 'opacity(1)' : 'opacity(0)')};
+  top: 53rem;
+  right: 51rem;
+  width: 21rem;
+  height: 1px; // otherwise bug
+  transition: 0.3s;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
 `;
 
 const Home = () => {
@@ -117,10 +129,10 @@ const Home = () => {
         <Title>Obywatele, Towarzysze!</Title>
         <Subtitle>Zapraszamy do gry!</Subtitle>
 
-        <Paragraph>
+        <StyledParagraph>
           Wybierz liczbę graczy:
           {/* <span>{state.players && state.players}</span> */}
-        </Paragraph>
+        </StyledParagraph>
 
         <NumberContainer>
           {options.map((element) => (
@@ -137,11 +149,11 @@ const Home = () => {
           ))}
         </NumberContainer>
 
-        <StyledButton secondary active={isButtonVisible}>
+        <StampleButton secondary active={isButtonVisible}>
           <Link href="/game">
-            <span>Start</span>
+            <img src="/stamp.svg" alt="start button" />
           </Link>
-        </StyledButton>
+        </StampleButton>
       </MenuContainer>
     </Wrapper>
   );
