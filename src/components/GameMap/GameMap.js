@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { villageData, cityData, riverData } from './mapData';
-import { useAppContext } from '../../context/state';
-import SvgProvider from './SvgProvider';
+import { useAppContext } from 'context/state';
+import { villageData, cityData, riverData } from 'components/GameMap/mapData';
+// import { useReducer } from 'react';
 
 const Variables = {
-  size: '11rem',
+  size: '16rem',
 };
 
 const Wrapper = styled.div`
@@ -59,7 +59,7 @@ const Bridge = styled.div`
 
 export const GameMap = () => {
   const { state } = useAppContext();
-  console.log(state);
+  console.log(`Game map state: ${state.players}`);
 
   return (
     <Wrapper>
@@ -86,13 +86,6 @@ export const GameMap = () => {
         {cityData.map((item) => (
           <MapField key={item.id} id={item.id}>
             {/* Pozycja:{item.position}| Id:{item.id} */}
-
-            <SvgProvider
-              width={Variables.size}
-              height={Variables.size}
-              file="cityIcons"
-              elementId={item.id}
-            />
           </MapField>
         ))}
       </StyledGrid>

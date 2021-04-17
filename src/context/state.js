@@ -1,4 +1,5 @@
 import { createContext, useContext, useReducer } from 'react';
+import PropTypes from 'prop-types';
 
 const AppContext = createContext();
 
@@ -11,11 +12,10 @@ const reducer = (state, action) => {
     case '4':
       return { ...state, players: 4 };
     default:
-      return state;
+      throw new Error();
   }
 };
 
-// eslint-disable-next-line react/prop-types
 export const ContextAppWrapper = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {
     players: null,
@@ -27,6 +27,10 @@ export const ContextAppWrapper = ({ children }) => {
   };
 
   return <AppContext.Provider value={reducerForContext}>{children}</AppContext.Provider>;
+};
+
+ContextAppWrapper.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]).isRequired,
 };
 
 export const useAppContext = () => useContext(AppContext);

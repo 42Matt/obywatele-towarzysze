@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import Link from 'next/link';
-import { useAppContext } from '../context/state';
+import { useAppContext } from 'context/state';
 // import pic from 'assets/pic.jpeg';
 
 const Wrapper = styled.div`
@@ -96,7 +96,7 @@ const ChosenNumber = styled.span`
   font-weight: 700;
 `;
 
-const StampleButton = styled.div`
+const StartButton = styled.div`
   position: absolute;
   filter: ${({ active }) => (active ? 'opacity(1)' : 'opacity(0)')};
   bottom: 22rem;
@@ -118,7 +118,7 @@ const Home = () => {
   const [isButtonVisible, setButtonVisibility] = useState(false);
 
   const handlePickingNumberOfPlayers = (e) => {
-    dispatch({ type: e.target.value });
+    // dispatch({ type: e.target.value });
     setNumberOfPlayers(e.target.value);
     setButtonVisibility(true);
   };
@@ -151,11 +151,15 @@ const Home = () => {
           ))}
         </NumberContainer>
 
-        <StampleButton secondary active={isButtonVisible}>
+        <StartButton
+          secondary
+          active={isButtonVisible}
+          onClick={() => dispatch({ type: numberOfPlayers })}
+        >
           <Link href="/game">
             <img src="/stamp.svg" alt="start button" />
           </Link>
-        </StampleButton>
+        </StartButton>
       </MenuContainer>
     </Wrapper>
   );
