@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 import Link from 'next/link';
 import { useAppContext } from 'context/state';
-// import pic from 'assets/pic.jpeg';
+import Title from 'components/atoms/Title';
+import Subtitle from 'components/atoms/Subtitle';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -42,23 +43,14 @@ const MenuContainer = styled.div`
   box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.11);
 `;
 
-const Title = styled.h1`
+const StyledTitle = styled(Title)`
   margin: 0 0 3rem;
-  /* text-transform: uppercase; */
-  color: ${({ theme }) => theme.colors.textNormal};
-  font-family: ${({ theme }) => theme.fonts.title};
-  font-size: ${({ theme }) => theme.sizes.xxl};
-  text-align: center;
-  /* text-shadow: 1px 1px #fff; */
 `;
 
-const Subtitle = styled.h2`
+const StyledSubtitle = styled(Subtitle)`
   margin: 0 0 20rem;
-  font-family: ${({ theme }) => theme.fonts.title};
-  font-size: ${({ theme }) => theme.sizes.xl};
-  color: ${({ theme }) => theme.colors.textNormal};
-  text-shadow: 1px 1px #333;
 `;
+
 const StyledParagraph = styled.p`
   margin: 0 0 2.5rem;
   /* font-family: ${({ theme }) => theme.fonts.title}; */
@@ -128,8 +120,8 @@ const Home = () => {
   return (
     <Wrapper>
       <MenuContainer>
-        <Title>Obywatele, Towarzysze!</Title>
-        <Subtitle>Zapraszamy do gry!</Subtitle>
+        <StyledTitle>Obywatele, Towarzysze!</StyledTitle>
+        <StyledSubtitle>Zapraszamy do gry!</StyledSubtitle>
 
         <StyledParagraph>
           Wybierz liczbę graczy:

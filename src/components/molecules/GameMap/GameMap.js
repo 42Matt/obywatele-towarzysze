@@ -1,17 +1,11 @@
 import styled from 'styled-components';
 import { useAppContext } from 'context/state';
-import { villageData, cityData, riverData } from 'components/GameMap/mapData';
+import { villageData, cityData, riverData } from 'components/molecules/GameMap/mapData';
 // import { useReducer } from 'react';
 
 const Variables = {
   size: '16rem',
 };
-
-const Wrapper = styled.div`
-  display: flex;
-  direction: columns;
-  justify-content: center;
-`;
 
 const StyledGrid = styled.div`
   /* grid-gap: 2px; */
@@ -62,12 +56,13 @@ export const GameMap = () => {
   console.log(`Game map state: ${state.players}`);
 
   return (
-    <Wrapper>
+    <>
       <StyledGrid>
         {villageData.map((item) => (
           <MapField key={item.id} id={item.id}>
             {/* Pozycja:{item.position}| Id:{item.id} */}
             <img src={`/village/field-${item.id}.svg`} alt={`Village field ${item.id}`} />
+            {/* {item.position === state.player.position ? } */}
           </MapField>
         ))}
       </StyledGrid>
@@ -89,6 +84,6 @@ export const GameMap = () => {
           </MapField>
         ))}
       </StyledGrid>
-    </Wrapper>
+    </>
   );
 };

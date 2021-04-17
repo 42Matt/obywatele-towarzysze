@@ -1,5 +1,16 @@
-import GameMap from 'components/GameMap';
+import GameMap from 'components/molecules/GameMap';
+import styled from 'styled-components';
 
-const Game = () => <GameMap />;
+const Wrapper = styled.div`
+  display: flex;
+  direction: columns;
+  justify-content: center;
+`;
+
+const Game = () => (
+  <Wrapper>
+    <GameMap />
+  </Wrapper>
+);
 
 export default Game;
