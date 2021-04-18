@@ -1,5 +1,7 @@
 import GameMap from 'components/molecules/GameMap';
 import styled from 'styled-components';
+import { Player, Item } from 'utils/PlayerBuilder';
+import PlayerBuilderComponent from 'components/organism/PlayerBuilderComponent';
 
 const Wrapper = styled.div`
   display: flex;
@@ -7,10 +9,18 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-const Game = () => (
-  <Wrapper>
-    <GameMap />
-  </Wrapper>
-);
+const Game = () => {
+  console.log(Player);
+  console.log(Item);
+
+  return (
+    <>
+      <Wrapper>
+        <GameMap />
+      </Wrapper>
+      <PlayerBuilderComponent />
+    </>
+  );
+};
 
 export default Game;
