@@ -37,8 +37,8 @@ const MenuContainer = styled.div`
   height: 70rem;
   background-image: url(/menu-choice.jpeg);
   background-color: ${({ theme }) => theme.colors.accent};
-  border-right: 10px solid ${({ theme }) => theme.colors.red};
-  border-bottom: 10px solid ${({ theme }) => theme.colors.red};
+  border-right: 10px solid ${({ theme }) => theme.colors.darkRed};
+  border-bottom: 10px solid ${({ theme }) => theme.colors.darkRed};
   border-radius: 20px;
   box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.11);
 `;
@@ -67,7 +67,7 @@ const NumberContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 7px solid ${({ theme }) => theme.colors.red};
+  border-bottom: 7px solid ${({ theme }) => theme.colors.darkRed};
   /* border-right: 5px solid #d40000; */
   /* border-radius: 1rem; */
   input {
@@ -79,7 +79,7 @@ const NumberContainer = styled.div`
     cursor: pointer;
     transition: 0.2s ease-in-out;
     &:hover {
-      background-color: ${({ theme }) => theme.colors.textWhite};
+      background-color: ${({ theme }) => theme.colors.opacityWhite};
     }
   }
 `;
