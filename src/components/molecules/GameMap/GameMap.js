@@ -26,7 +26,6 @@ const MapField = styled.div`
   height: ${Variables.size};
   width: ${Variables.size};
   /* temps */
-  /* border: 2px solid black; */
   font-size: 2rem;
 `;
 
@@ -53,7 +52,9 @@ const Bridge = styled.div`
 
 export const GameMap = () => {
   const { state } = useAppContext();
-  console.log(`Gamemap.js number state: ${state.number}`);
+  console.log('GameMap state:');
+  console.log(state);
+  console.log('state');
 
   return (
     <>

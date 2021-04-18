@@ -11,8 +11,10 @@ const reducer = (state, action) => {
       return { ...state, number: 3 };
     case '4':
       return { ...state, number: 4 };
+    case 'initPlayers':
+      return { ...state, players: action.payload };
     default:
-      throw new Error();
+      throw new Error('Context reducer error');
   }
 };
 
