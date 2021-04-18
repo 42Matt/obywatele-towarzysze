@@ -53,7 +53,7 @@ const Bridge = styled.div`
 
 export const GameMap = () => {
   const { state } = useAppContext();
-  console.log(`Game map state: ${state.players}`);
+  console.log(`Gamemap.js number state: ${state.number}`);
 
   return (
     <>
