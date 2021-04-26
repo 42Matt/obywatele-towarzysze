@@ -1,4 +1,4 @@
-import { getFixPosition } from './gameUtils';
+import { getFixPosition } from '../../components/molecules/GameMap/gameUtils';
 
 describe('getFixPosition tests', () => {
   it('move more then fields', () => {

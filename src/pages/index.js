@@ -2,9 +2,9 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import Link from 'next/link';
-import { useAppContext } from 'context/state';
-import Title from 'components/atoms/Title';
-import Subtitle from 'components/atoms/Subtitle';
+import { useAppContext } from '@/context/state';
+import Title from '@/components/atoms/Title';
+import Subtitle from '@/components/atoms/Subtitle';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -87,31 +87,43 @@ const ChosenNumber = styled.span`
   font-weight: 700;
 `;
 
-const StartButton = styled.div`
+const StartButton = styled.button`
   position: absolute;
-  filter: ${({ active }) => (active ? 'opacity(1)' : 'opacity(0)')};
+  /* transform: ${({ active }) => (active ? 'scale(1)' : 'scale(0)')}; */
+  visibility: ${({ active }) => (active ? 'visible' : 'hidden')};
+  /* opacity: ${({ active }) => (active ? '100%' : '0')}; */
   bottom: 22rem;
-  right: 1rem;
-  width: 21rem;
-  height: 1px; // otherwise bug
-  transition: 0.3s;
+  right: 22rem;
+
+  height: 0;
+  width: 0;
+  padding: 0;
+
+  /* height: 10rem;
+  width: 10rem;
+  padding: 10rem; */
+  border: 0;
   cursor: pointer;
 
+  background-color: none;
   &:hover,
   &:focus {
     transform: scale(1.05);
+  }
+  & img {
+    width: 20rem;
+    height: 20rem;
   }
 `;
 
 const Home = () => {
   const { dispatch } = useAppContext();
-  const [numberOfPlayers, setNumberOfPlayers] = useState(0);
-  const [isButtonVisible, setButtonVisibility] = useState(false);
+  const [players, setPlayers] = useState(0);
+  const [isVisible, setVisibility] = useState(false);
 
   const handlePickingNumberOfPlayers = (e) => {
-    // dispatch({ type: e.target.value });
-    setNumberOfPlayers(e.target.value);
-    setButtonVisibility(true);
+    setPlayers(e.target.value);
+    setVisibility(true);
   };
 
   const options = [2, 3, 4];
@@ -122,31 +134,24 @@ const Home = () => {
         <StyledTitle>Obywatele, Towarzysze!</StyledTitle>
         <StyledSubtitle>Zapraszamy do gry!</StyledSubtitle>
 
-        <StyledParagraph>
-          Wybierz liczbę graczy:
-          {/* <span>{state.players && state.players}</span> */}
-        </StyledParagraph>
+        <StyledParagraph>Wybierz liczbę graczy:</StyledParagraph>
 
         <NumberContainer>
           {options.map((element) => (
             <label key={element} htmlFor={element}>
               <input
                 type="radio"
-                value={+element}
+                value={element}
                 name="numberOfPlayers"
                 id={element}
                 onChange={handlePickingNumberOfPlayers}
               />
-              {+element === +numberOfPlayers ? <ChosenNumber>{element}</ChosenNumber> : element}
+              {+element === +players ? <ChosenNumber>{element}</ChosenNumber> : element}
             </label>
           ))}
         </NumberContainer>
 
-        <StartButton
-          secondary
-          active={isButtonVisible}
-          onClick={() => dispatch({ type: numberOfPlayers })}
-        >
+        <StartButton role="button" active={isVisible} onClick={() => dispatch({ type: players })}>
           <Link href="/game">
             <img src="/stamp.svg" alt="start button" />
           </Link>

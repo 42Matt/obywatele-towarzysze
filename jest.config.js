@@ -1,5 +1,14 @@
 module.exports = {
   testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
-  // A list of paths to modules that run some code to configure or set up the testing framework before each test
+  coverageDirectory: '.coverage',
+  moduleNameMapper: {
+    '^@/components(.*)$': '<rootDir>/src/components$1',
+    '^@/context(.*)$': '<rootDir>/src/context$1',
+    '^@/pages(.*)$': '<rootDir>/src/pages$1',
+    '^@/test(.*)$': '<rootDir>/src/test/$1',
+    '^@/theme(.*)$': '<rootDir>/src/theme/$1',
+    '^@/utils(.*)$': '<rootDir>/src/utils/$1',
+  },
+
   setupFilesAfterEnv: ['./jest.setup.js'],
 };

@@ -12,8 +12,8 @@ function TestWrapper({ children }) {
   );
 }
 
-const customRender = (ui, options) =>
-  render(ui, {
+const customRender = (children, options) =>
+  render(children, {
     wrapper: TestWrapper,
     ...options,
   });

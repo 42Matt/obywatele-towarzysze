@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
 import styled from 'styled-components';
-import { useAppContext } from 'context/state';
-import { villageData, cityData, riverData } from 'components/molecules/GameMap/mapData';
+import { useAppContext } from '@/context/state';
+import { villageData, cityData, riverData } from '@/components/molecules/GameMap/mapData';
+
 // import { useReducer } from 'react';
 
 const Variables = {
@@ -35,11 +37,11 @@ const MiddleFields = styled.div`
   justify-content: center;
 `;
 
-const Sea = styled.div`
+const River = styled.div`
   position: absolute;
   height: ${Variables.size};
   width: ${Variables.size};
-  background-image: url('/sea.svg');
+  background-image: url('/river.svg');
 `;
 
 const Bridge = styled.div`
@@ -52,9 +54,10 @@ const Bridge = styled.div`
 
 export const GameMap = () => {
   const { state } = useAppContext();
-  console.log('GameMap state:');
-  console.log(state);
-  console.log('state');
+
+  useEffect(() => {
+    console.log({ state });
+  }, [state]);
 
   return (
     <>
@@ -62,7 +65,11 @@ export const GameMap = () => {
         {villageData.map((item) => (
           <MapField key={item.id} id={item.id}>
             {/* Pozycja:{item.position}| Id:{item.id} */}
-            <img src={`/village/field-${item.id}.svg`} alt={`Village field ${item.id}`} />
+            <img
+              data-testid="village"
+              src={`/village/field-${item.id}.svg`}
+              alt={`Village field ${item.id}`}
+            />
             {/* {item.position === state.player.position ? } */}
           </MapField>
         ))}
@@ -72,8 +79,8 @@ export const GameMap = () => {
         {riverData.map((item) => (
           <MapField key={item.id} id={item.id}>
             {/* Pozycja:{item.position}| Id:{item.id} */}
-            <Sea />
-            {item.id === 3 ? <Bridge /> : null}
+            <River data-testid="river" />
+            {item.id === 3 ? <Bridge data-testid="bridge" /> : null}
           </MapField>
         ))}
       </MiddleFields>

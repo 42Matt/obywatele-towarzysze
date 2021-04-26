@@ -1,7 +1,7 @@
 {
   "parser": "@babel/eslint-parser",
   "extends": ["airbnb", "prettier"],
-  "plugins": ["react-hooks"],
+  "plugins": ["react-hooks", "jest-dom", "testing-library"],
   "env": {
     "jest": true
   },
@@ -10,6 +10,13 @@
     "window": true,
     "localStorage": true
   },
+  "overrides": [
+    {
+      // eslint-plugin-testing-library only test files
+      "files": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
+      "extends": ["plugin:testing-library/react", "plugin:jest-dom/recommended"]
+    }
+  ],
 
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
@@ -27,7 +34,15 @@
     "import/resolver": {
       "node": {
         "moduleDirectory": ["node_modules", "src/"]
-      }
+      },
+      "alias": [
+        ["@/components", "./src/components/"],
+        ["@/context", "./src/context/"],
+        ["@/pages", "./src/pages/"],
+        ["@/test", "./src/test/"],
+        ["@/theme", "./src/theme/"],
+        ["@/utils", "./src/utils/"]
+      ]
     }
   }
 }

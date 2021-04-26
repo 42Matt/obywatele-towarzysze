@@ -1,8 +1,8 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import ModernNormalize from 'theme/ModernNormalize';
-import theme from 'theme/globalTheme';
-import Meta from 'components/Meta';
-import { ContextAppWrapper } from 'context/state';
+import ModernNormalize from '@/theme/ModernNormalize';
+import theme from '@/theme/globalTheme';
+import Meta from '@/components/atoms/Meta';
+import { ContextAppWrapper } from '@/context/state';
 
 const GlobalStyle = createGlobalStyle`
   ${ModernNormalize}

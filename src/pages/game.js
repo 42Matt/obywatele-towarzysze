@@ -1,8 +1,8 @@
-import GameMap from 'components/molecules/GameMap';
 import styled from 'styled-components';
-import { Player } from 'utils/PlayerBuilder';
-import { useAppContext } from 'context/state';
 import { useEffect } from 'react';
+import { useAppContext } from '@/context/state';
+import GameMap from '@/components/molecules/GameMap';
+import { Player } from '@/utils/PlayerBuilder';
 
 const Wrapper = styled.div`
   display: flex;
@@ -36,7 +36,7 @@ const Game = () => {
 
   useEffect(() => {
     dispatchPlayers();
-  }, [state.number]);
+  }, []);
 
   return (
     <>

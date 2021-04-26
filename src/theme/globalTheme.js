@@ -10,7 +10,7 @@ const theme = {
       textWhite: '#FFF',
       opacityWhite: 'rgba(255,255,255,0.7)',
       red: '#d40000',
-      darkRed: '#990000',
+      darkRed: '#BE0202',
     },
     gradients: {
       primaryGradient: 'linear-gradient(94.56deg, #F9B5A8 12.48%, #ED6A40 82.12%)',
