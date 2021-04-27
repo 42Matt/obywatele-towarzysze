@@ -2,11 +2,14 @@ import { useEffect } from 'react';
 import styled from 'styled-components';
 import { useAppContext } from '@/context/state';
 import { villageData, cityData, riverData } from '@/components/molecules/GameMap/mapData';
+import { rollDice, getFixedPosition } from '@/utils/gameplay';
 
 // import { useReducer } from 'react';
 
 const Variables = {
   size: '16rem',
+  playerHeight: '10rem',
+  playerWidth: '6rem',
 };
 
 const StyledGrid = styled.div`
@@ -52,12 +55,34 @@ const Bridge = styled.div`
   background-image: url('/bridge.svg');
 `;
 
+const PlayerOne = styled.div`
+  position: relative;
+  bottom: ${Variables.playerHeight};
+  left: 9rem;
+  height: ${Variables.playerHeight};
+  width: ${Variables.playerWidth};
+  background-image: url('/players/player-one.svg');
+  object-fit: contain;
+  z-index: 1000;
+`;
+
 export const GameMap = () => {
-  const { state } = useAppContext();
+  const { state, dispatch } = useAppContext();
 
   useEffect(() => {
     console.log({ state });
   }, [state]);
+
+  const handlePlayerMovement = (player) => {
+    const startPosition = state.players[player].position;
+
+    const endPosition = getFixedPosition(startPosition, rollDice(1, 6));
+    // console.log({ endPosition });
+    dispatch({
+      type: 'movePlayer',
+      payload: { players: { player: 'playerOne', position: endPosition } },
+    });
+  };
 
   return (
     <>
@@ -70,7 +95,8 @@ export const GameMap = () => {
               src={`/village/field-${item.id}.svg`}
               alt={`Village field ${item.id}`}
             />
-            {/* {item.position === state.player.position ? } */}
+            {item.position === state.players.playerOne.position ? <PlayerOne /> : null}
+            {/* {item.position === 1 ? <PlayerOne /> : null} */}
           </MapField>
         ))}
       </StyledGrid>
@@ -92,6 +118,9 @@ export const GameMap = () => {
           </MapField>
         ))}
       </StyledGrid>
+      <button type="button" onClick={() => handlePlayerMovement('playerOne')}>
+        Move PlayerOne
+      </button>
     </>
   );
 };

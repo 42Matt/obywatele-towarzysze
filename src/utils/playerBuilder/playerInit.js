@@ -1,6 +1,7 @@
 class Player {
-  constructor(name, hp, { slynes, connections, item, speedBonus } = {}) {
+  constructor(name, position, { hp, slynes, connections, item, speedBonus } = {}) {
     this.name = name;
+    this.position = position;
     this.hp = hp;
     this.slynes = slynes;
     this.connections = connections;

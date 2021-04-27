@@ -1,28 +1,50 @@
 import { createContext, useContext, useReducer } from 'react';
 import PropTypes from 'prop-types';
+import { Player } from '@/utils/playerBuilder';
 
 const AppContext = createContext();
 
+const init = (number) => {
+  const playerOne = new Player('Gracz 1', 1, { hp: 120 });
+  const playerTwo = new Player('Gracz 2', 1, { hp: 120 });
+  const playerThree = new Player('Gracz 3', 1, { hp: 120 });
+  const playerFour = new Player('Gracz 4', 1, { hp: 120 });
+
+  switch (number) {
+    case 2:
+      return { number, players: { playerOne, playerTwo } };
+    case 3:
+      return { number, players: { playerOne, playerTwo, playerThree } };
+    case 4:
+      return { number, players: { playerOne, playerTwo, playerThree, playerFour } };
+    default:
+      throw new Error('Dispatch players num invalid');
+  }
+};
+
 const reducer = (state, action) => {
   switch (action.type) {
-    case '2':
-      return { ...state, number: 2 };
-    case '3':
-      return { ...state, number: 3 };
-    case '4':
-      return { ...state, number: 4 };
-    case 'initPlayers':
-      return { ...state, players: action.payload };
+    case 'init':
+      return init(action.payload);
+    case 'movePlayer':
+      return {
+        // TODO merge move state
+        ...state,
+      };
     default:
       throw new Error('Context reducer error');
   }
 };
 
 export const ContextAppWrapper = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, {
-    players: {},
-    number: null,
-  });
+  const [state, dispatch] = useReducer(
+    reducer,
+    {
+      players: {},
+      number: null,
+    },
+    // init,
+  );
 
   const reducerForContext = {
     state,

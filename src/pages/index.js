@@ -122,7 +122,7 @@ const Home = () => {
   const [isVisible, setVisibility] = useState(false);
 
   const handlePickingNumberOfPlayers = (e) => {
-    setPlayers(e.target.value);
+    setPlayers(+e.target.value);
     setVisibility(true);
   };
 
@@ -146,12 +146,17 @@ const Home = () => {
                 id={element}
                 onChange={handlePickingNumberOfPlayers}
               />
-              {+element === +players ? <ChosenNumber>{element}</ChosenNumber> : element}
+              {+element === players ? <ChosenNumber>{element}</ChosenNumber> : element}
             </label>
           ))}
         </NumberContainer>
 
-        <StartButton role="button" active={isVisible} onClick={() => dispatch({ type: players })}>
+        {/* <StartButton role="button" active={isVisible} onClick={() => dispatch({ type: players })}> */}
+        <StartButton
+          role="button"
+          active={isVisible}
+          onClick={() => dispatch({ type: 'init', payload: players })}
+        >
           <Link href="/game">
             <img src="/stamp.svg" alt="start button" />
           </Link>
