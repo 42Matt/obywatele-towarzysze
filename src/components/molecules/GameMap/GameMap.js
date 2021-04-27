@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 import styled from 'styled-components';
 import { useAppContext } from '@/context/state';
 import { villageData, cityData, riverData } from '@/components/molecules/GameMap/mapData';
-import { rollDice, getFixedPosition } from '@/utils/gameplay';
+// import { rollDice, getFixedPosition } from '@/utils/gameplay';
 
 // import { useReducer } from 'react';
 
 const Variables = {
   size: '16rem',
-  playerHeight: '10rem',
+  playerHeight: '4em',
   playerWidth: '6rem',
 };
 
@@ -55,34 +55,40 @@ const Bridge = styled.div`
   background-image: url('/bridge.svg');
 `;
 
-const PlayerOne = styled.div`
+const PlayerIcon = styled.div`
+  display: inline-block;
   position: relative;
-  bottom: ${Variables.playerHeight};
-  left: 9rem;
+  bottom: calc(${Variables.playerHeight}*2.1);
+  left: 2rem;
   height: ${Variables.playerHeight};
   width: ${Variables.playerWidth};
-  background-image: url('/players/player-one.svg');
+
   object-fit: contain;
   z-index: 1000;
+  /* background-image: url('/players/player-one.svg'); */
+  background-image: url(${({ icon }) => icon});
+  background-repeat: no-repeat;
+  /* visibility: ${({ active }) => (active ? 'visible' : 'hidden')}; */
 `;
 
 export const GameMap = () => {
-  const { state, dispatch } = useAppContext();
+  // const { state, dispatch } = useAppContext();
+  const { state } = useAppContext();
 
   useEffect(() => {
     console.log({ state });
   }, [state]);
 
-  const handlePlayerMovement = (player) => {
-    const startPosition = state[player].position;
+  // const handlePlayerMovement = (player) => {
+  //   const startPosition = state[player].position;
 
-    const endPosition = getFixedPosition(startPosition, rollDice(1, 6));
+  //   const endPosition = getFixedPosition(startPosition, rollDice(1, 6));
 
-    dispatch({
-      type: 'movePlayer',
-      payload: { player, endPosition },
-    });
-  };
+  //   dispatch({
+  //     type: 'movePlayer',
+  //     payload: { player, endPosition },
+  //   });
+  // };
 
   return (
     <>
@@ -95,8 +101,18 @@ export const GameMap = () => {
               src={`/village/field-${item.id}.svg`}
               alt={`Village field ${item.id}`}
             />
-            {/* {item.position === state.playerOne.position ? <PlayerOne /> : null} */}
-            {/* {item.position === 1 ? <PlayerOne /> : null} */}
+            {state.playerOne && item.position === state.playerOne.position ? (
+              <PlayerIcon icon="/players/player-one.svg" />
+            ) : null}
+            {state.playerTwo && state.playerTwo && item.position === state.playerTwo.position ? (
+              <PlayerIcon icon="/players/player-two.svg" />
+            ) : null}
+            {state.playerThree && item.position === state.playerThree.position ? (
+              <PlayerIcon icon="/players/player-two.svg" />
+            ) : null}
+            {state.playerFour && item.position === state.playerFour.position ? (
+              <PlayerIcon icon="/players/player-two.svg" />
+            ) : null}
           </MapField>
         ))}
       </StyledGrid>
@@ -118,9 +134,12 @@ export const GameMap = () => {
           </MapField>
         ))}
       </StyledGrid>
-      <button type="button" onClick={() => handlePlayerMovement('playerOne')}>
+      {/* <button type="button" onClick={() => handlePlayerMovement('playerOne')}>
         Move PlayerOne
       </button>
+      <button type="button" onClick={() => handlePlayerMovement('playerTwo')}>
+        Move PlayerTwo
+      </button> */}
     </>
   );
 };

@@ -1,18 +1,26 @@
 import styled from 'styled-components';
 import GameMap from '@/components/molecules/GameMap';
+import GameInterface from '@/components/molecules/GameInterface';
 
-const Wrapper = styled.div`
+const GameContainer = styled.div`
   display: flex;
-  direction: columns;
+  flex-direction: column;
+  background: url(/brickwall.png);
+  height: 100vh;
+`;
+
+const MapWrapper = styled.div`
+  display: flex;
+  /* direction: row; */
   justify-content: center;
 `;
 
 const Game = () => (
-  <>
-    <Wrapper>
+  <GameContainer>
+    <MapWrapper>
       <GameMap />
-    </Wrapper>
-    {/* <GameInterface /> */}
-  </>
+    </MapWrapper>
+    <GameInterface />
+  </GameContainer>
 );
 export default Game;

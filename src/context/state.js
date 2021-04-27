@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from 'react';
 import PropTypes from 'prop-types';
-import { Player } from '@/utils/playerBuilder';
+import { Player } from '@/context/playerInit';
 
 const AppContext = createContext();
 
@@ -31,7 +31,10 @@ const reducer = (state, action) => {
         // TODO merge move state
         ...state,
         // [action.payload.player]: { position: [action.payload.position] },
-        [action.payload.player]: [action.payload.position],
+        [action.payload.player]: {
+          ...state[action.payload.player],
+          position: action.payload.endPosition,
+        },
       };
     default:
       throw new Error('Context reducer error');
