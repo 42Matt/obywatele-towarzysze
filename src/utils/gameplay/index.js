@@ -10,10 +10,4 @@ export function getFixedPosition(currentPosition, dislocation, modifier = 1, las
   return futurePosition;
 }
 
-export function gameInit() {
-  // createPlayer and dispatch data
-  // setInitPositions();
-  // drawPlayers()
-}
-
 // winningConditions()

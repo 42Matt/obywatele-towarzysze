@@ -12,11 +12,11 @@ const init = (number) => {
 
   switch (number) {
     case 2:
-      return { number, players: { playerOne, playerTwo } };
+      return { number, playerOne, playerTwo };
     case 3:
-      return { number, players: { playerOne, playerTwo, playerThree } };
+      return { number, playerOne, playerTwo, playerThree };
     case 4:
-      return { number, players: { playerOne, playerTwo, playerThree, playerFour } };
+      return { number, playerOne, playerTwo, playerThree, playerFour };
     default:
       throw new Error('Dispatch players num invalid');
   }
@@ -30,6 +30,8 @@ const reducer = (state, action) => {
       return {
         // TODO merge move state
         ...state,
+        // [action.payload.player]: { position: [action.payload.position] },
+        [action.payload.player]: [action.payload.position],
       };
     default:
       throw new Error('Context reducer error');
@@ -40,7 +42,6 @@ export const ContextAppWrapper = ({ children }) => {
   const [state, dispatch] = useReducer(
     reducer,
     {
-      players: {},
       number: null,
     },
     // init,

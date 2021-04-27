@@ -74,13 +74,13 @@ export const GameMap = () => {
   }, [state]);
 
   const handlePlayerMovement = (player) => {
-    const startPosition = state.players[player].position;
+    const startPosition = state[player].position;
 
     const endPosition = getFixedPosition(startPosition, rollDice(1, 6));
-    // console.log({ endPosition });
+
     dispatch({
       type: 'movePlayer',
-      payload: { players: { player: 'playerOne', position: endPosition } },
+      payload: { player, endPosition },
     });
   };
 
@@ -95,7 +95,7 @@ export const GameMap = () => {
               src={`/village/field-${item.id}.svg`}
               alt={`Village field ${item.id}`}
             />
-            {item.position === state.players.playerOne.position ? <PlayerOne /> : null}
+            {/* {item.position === state.playerOne.position ? <PlayerOne /> : null} */}
             {/* {item.position === 1 ? <PlayerOne /> : null} */}
           </MapField>
         ))}
