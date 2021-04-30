@@ -1,4 +1,8 @@
-export const Player = (name, position, { hp, slynes, connections, item, speedBonus } = {}) => ({
+export const Player = (
+  name,
+  position,
+  { hp, slynes, connections = 0, item, speedBonus, dead = false } = {},
+) => ({
   name,
   position,
   hp,
@@ -6,4 +10,5 @@ export const Player = (name, position, { hp, slynes, connections, item, speedBon
   connections,
   item,
   speedBonus,
+  dead,
 });

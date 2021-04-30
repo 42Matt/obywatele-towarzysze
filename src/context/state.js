@@ -28,14 +28,30 @@ const reducer = (state, action) => {
       return init(action.payload);
     case 'movePlayer':
       return {
-        // TODO merge move state
         ...state,
-        // [action.payload.player]: { position: [action.payload.position] },
         [action.payload.player]: {
           ...state[action.payload.player],
           position: action.payload.endPosition,
         },
       };
+    case 'loseHP': {
+      return {
+        ...state,
+        [action.payload.player]: {
+          ...state[action.payload.player],
+          hp: action.payload.hp,
+        },
+      };
+    }
+    case 'killedPlayer': {
+      return {
+        ...state,
+        [action.payload.player]: {
+          ...state[action.payload.player],
+          dead: true,
+        },
+      };
+    }
     default:
       throw new Error('Context reducer error');
   }

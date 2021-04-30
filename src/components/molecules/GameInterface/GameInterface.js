@@ -35,28 +35,51 @@ export const GameInterface = () => {
     });
   };
 
+  const handlePlayerDamage = (player, dmg) => {
+    const hp = state[player].hp - dmg;
+    if (hp <= 0) {
+      dispatch({
+        type: 'killedPlayer',
+        payload: { player },
+      });
+    }
+
+    dispatch({
+      type: 'loseHP',
+      payload: { player, hp },
+    });
+  };
+
   return (
     <Wrapper>
       <Column>
-        <Paragraph>PlayerOne</Paragraph>
+        <Paragraph>
+          HP: {state.playerOne.hp} Dead: {state.playerOne.dead === false ? 'no' : 'yes'}
+        </Paragraph>
         <Button type="button" onClick={() => handlePlayerMovement('playerOne')}>
           Move PlayerOne
         </Button>
+        <Button secondary type="button" onClick={() => handlePlayerDamage('playerOne', 10)}>
+          Hit PlayerOne by 10
+        </Button>
       </Column>
+
       <Column>
-        <Paragraph>Player Two</Paragraph>
+        <Paragraph>HP: {state.playerTwo.hp}</Paragraph>
         <Button type="button" onClick={() => handlePlayerMovement('playerTwo')}>
           Move PlayerTwo
         </Button>
       </Column>
+
       <Column>
-        <Paragraph>Player Three</Paragraph>
+        <Paragraph>HP: {state?.playerThree?.hp}</Paragraph>
         <Button type="button" onClick={() => handlePlayerMovement('playerThree')}>
           Move PlayerTwo
         </Button>
       </Column>
+
       <Column>
-        <Paragraph>Player Four</Paragraph>
+        <Paragraph>HP: {state?.playerFour?.hp}</Paragraph>
         <Button type="button" onClick={() => handlePlayerMovement('playerFour')}>
           Move PlayerTwo
         </Button>
