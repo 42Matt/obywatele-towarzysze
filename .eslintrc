@@ -1,0 +1,48 @@
+{
+  "parser": "@babel/eslint-parser",
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["react-hooks", "jest-dom", "testing-library"],
+  "env": {
+    "jest": true
+  },
+  "globals": {
+    "document": true,
+    "window": true,
+    "localStorage": true
+  },
+  "overrides": [
+    {
+      // eslint-plugin-testing-library only test files
+      "files": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
+      "extends": ["plugin:testing-library/react", "plugin:jest-dom/recommended"]
+    }
+  ],
+
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
+    "import/prefer-default-export": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": 1,
+    "react/state-in-constructor": [1, "never"],
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
+    "react/jsx-uses-react": "off", // no react import
+    "react/react-in-jsx-scope": "off", // no react import
+    "react/jsx-props-no-spreading": "off" //might turn on later
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "src/"]
+      },
+      "alias": [
+        ["@/components", "./src/components/"],
+        ["@/context", "./src/context/"],
+        ["@/pages", "./src/pages/"],
+        ["@/test", "./src/test/"],
+        ["@/theme", "./src/theme/"],
+        ["@/utils", "./src/utils/"]
+      ]
+    }
+  }
+}
